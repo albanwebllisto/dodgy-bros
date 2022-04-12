@@ -1,0 +1,133 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+    {% block title %}
+      <title>Dodgy Bros site</title>
+    {% endblock title %}
+    {% block css %}{% endblock%}
+    <style>
+nav.navbar.header_nav_wrp {
+    padding: 10px 0px;
+}
+.btn-success, input[type="submit"], .btn-primary {
+  background-color: #000 !important;
+  outline: none !important;
+  border-color: #000 !important;
+  box-shadow: unset !important;
+}
+.btn-success, input[type="submit"], .btn-danger , .btn-primary{
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 20px;
+}
+.cmn_page_innerwrp {
+    padding: 50px 0;
+}
+form input, .buy_car_page_wrp .form-control {
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 15px;
+    line-height: 20px;
+    height: unset !important;
+    padding: 8px 20px;
+    outline: none !important;
+    box-shadow: unset !important;
+}
+form label {
+    margin-right: 10px;
+}
+.cmn_page_innerwrp form {
+    margin-bottom: 50px;
+}
+.all_card_wrp {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    row-gap: 2rem;
+    column-gap: 3.25rem;
+    display: grid;
+}
+ul.pagination {
+    margin: 30px 0 0;
+}
+.login_page_inn form p label {
+  width: 15%;
+}
+.login_page_inn form p input {
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 15px;
+    line-height: 20px;
+    padding: 8px 20px;
+    width: 80%;
+}
+.login_page_inn form {
+  margin-bottom: 0;
+}
+.login_page_inn .card-body {
+    padding: 25px 30px 40px !important;
+}
+.login_page_inn h1.card-title {
+    font-size: 35px;
+    line-height: 40px;
+    margin: 0 0 25px;
+}
+ul.errorlist {
+    padding: 0;
+    list-style-position: inside;
+}
+.thankyou_page_wrp {
+    background-color: #f6f3f7;
+}
+a {
+  text-decoration: none !important;
+}
+    </style>
+  </head>
+  <body>
+    <header class="bg-light">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light header_nav_wrp">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <a class="navbar-brand" href="{% url 'core:dashboard' %}"><h2>DODGY <i style="color:rgb(143, 64, 64);">BROTHERS</i></h2></a>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            </ul>
+            <div class="form-inline my-2 my-lg-0">
+              {% if request.user.is_authenticated %}
+                <h2 class="my-2 my-sm-0">{{ request.user.username|title }}</h2>&nbsp;&nbsp;
+                <a class="btn btn-danger my-2 my-sm-0" href="{% url 'core:logout' %}">Logout</a>
+              {% else %}
+                <a class="btn btn-success my-2 my-sm-0" href="{% url 'core:login' %}">Login</a>
+              {% endif %}
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    
+    <div class="container">
+      <div class="cmn_page_innerwrp">
+        {% block content %}{% endblock%}
+      </div>
+    </div>
+
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    {% block js %} {% endblock %}
+  </body>
+</html>
