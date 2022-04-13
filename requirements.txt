@@ -3,3 +3,8 @@ django-filter
 flake8==4.0.1
 factory-boy==3.2.1
 django-widget-tweaks 
+pytest
+pytest-django
+pytest-cov
+pytest-xdist
+black
